@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>Typing Master | Advanced Edition</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" id="brandHome">
+      <span class="brand-icon">T</span>
+      <span>Typing<span class="brand-accent">Master</span>
+        <small>ADVANCED EDITION</small>
+      </span>
+    </a>
+    <div class="top-actions">
+      <span class="online-dot">READY TO TRAIN</span>
+      <button class="icon-btn" id="themeBtn" title="Change theme">◐</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="screen active">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="sparkle">✦</span> YOUR PERSONAL TYPING ARENA</div>
+          <h1>Build speed.<br><span class="gradient-text">Master precision.</span></h1>
+          <p class="hero-description">
+            Train your fingers, improve your accuracy, and challenge yourself
+            through endlessly advancing typing levels.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-large" id="startBtn">
+              Start training <span>→</span>
+            </button>
+            <button class="btn btn-secondary btn-large" id="practiceBtn">Practice mode</button>
+          </div>
+          <div class="hero-note"><span class="pulse-dot"></span> No account needed · Your records save in this browser</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-core">
+            <div class="core-symbol">⌨</div>
+            <div class="core-label">LEVEL UP</div>
+            <div class="core-number">∞</div>
+          </div>
+          <div class="floating-key key-one">W</div>
+          <div class="floating-key key-two">A</div>
+          <div class="floating-key key-three">S</div>
+          <div class="floating-key key-four">D</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR PROGRESS</div>
+          <h2>Performance overview</h2>
+        </div>
+        <button class="text-btn" id="recordsBtn">View all records ↗</button>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-top"><span>HIGHEST LEVEL</span><span class="stat-icon cyan">↗</span></div>
+          <div class="stat-value" id="dashLevel">0</div>
+          <div class="stat-note">Levels completed</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>PERSONAL BEST</span><span class="stat-icon gold">★</span></div>
+          <div class="stat-value" id="dashBest">0</div>
+          <div class="stat-note">Highest session score</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>SESSIONS</span><span class="stat-icon green">⌁</span></div>
+          <div class="stat-value" id="dashSessions">0</div>
+          <div class="stat-note">Finished sessions</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>ACHIEVEMENTS</span><span class="stat-icon purple">◆</span></div>
+          <div class="stat-value"><span id="dashAchievements">0</span><small> / 8</small></div>
+          <div class="stat-note">Milestones unlocked</div>
+        </article>
+      </div>
+
+      <div class="dashboard-bottom">
+        <article class="panel mode-panel">
+          <div class="eyebrow">CHOOSE YOUR CHALLENGE</div>
+          <h3>How do you want to train?</h3>
+          <div class="mode-options">
+            <label class="mode-option selected">
+              <input type="radio" name="mode" value="level" checked>
+              <span class="mode-symbol">∞</span>
+              <span class="mode-copy"><b>Endless levels</b><small>Progress through harder challenges</small></span>
+              <span class="radio-mark"></span>
+            </label>
+            <label class="mode-option">
+              <input type="radio" name="mode" value="practice">
+              <span class="mode-symbol">⌁</span>
+              <span class="mode-copy"><b>Practice mode</b><small>Learn at your own pace</small></span>
+              <span class="radio-mark"></span>
+            </label>
+            <label class="mode-option">
+              <input type="radio" name="mode" value="rush">
+              <span class="mode-symbol">ϟ</span>
+              <span class="mode-copy"><b>Word Rush</b><small>Type as many words as possible</small></span>
+              <span class="radio-mark"></span>
+            </label>
+          </div>
+          <button class="btn btn-primary full-width" id="launchBtn">Launch selected mode →</button>
+        </article>
+
+        <article class="panel achievement-preview">
+          <div class="panel-heading">
+            <div><div class="eyebrow">MILESTONES</div><h3>Achievement shelf</h3></div>
+            <button class="text-btn" id="achievementsBtn">See all</button>
+          </div>
+          <div id="achievementPreview" class="achievement-list"></div>
+        </article>
+      </div>
+      <footer class="footer">TYPE WITH PURPOSE <span>•</span> IMPROVE EVERY DAY</footer>
+    </section>
+
+    <!-- GAME -->
+    <section id="gameScreen" class="screen">
+      <div class="game-header">
+        <div>
+          <button class="back-link" id="gameHomeBtn">← Dashboard</button>
+          <h1 id="gameHeading">Level 1 <span class="difficulty-pill easy">EASY</span></h1>
+          <p id="gameSubheading">Complete three tasks to advance.</p>
+        </div>
+        <div class="game-controls">
+          <button class="btn btn-secondary" id="pauseBtn">Ⅱ Pause</button>
+          <button class="btn btn-secondary" id="restartBtn">↻ Restart</button>
+        </div>
+      </div>
+
+      <div class="live-stats">
+        <article class="live-stat"><span>SCORE</span><b id="scoreStat">0</b><small>points</small></article>
+        <article class="live-stat"><span>WPM</span><b id="wpmStat">0</b><small>words/min</small></article>
+        <article class="live-stat"><span>ACCURACY</span><b id="accuracyStat">100%</b><small>correct keys</small></article>
+        <article class="live-stat"><span>COMBO</span><b id="comboStat">0×</b><small>correct tasks</small></article>
+        <article class="live-stat"><span>LIVES</span><b id="livesStat">♥ ♥ ♥</b><small>remaining</small></article>
+      </div>
+
+      <article class="panel typing-panel">
+        <div class="typing-top">
+          <div>
+            <span class="eyebrow" id="taskCounter">TASK 1 / 3</span>
+            <div class="typing-title">Type the text below</div>
+          </div>
+          <div class="timer-wrap">
+            <span class="timer-caption">TIME LEFT</span>
+            <b id="timerText">38s</b>
+          </div>
+        </div>
+
+        <div class="time-track"><div id="timeBar" class="time-bar"></div></div>
+
+        <div id="promptText" class="prompt-text" aria-label="Text to type"></div>
+        <label class="input-label" for="typingInput">YOUR TYPING AREA</label>
+        <textarea id="typingInput" rows="3" autocomplete="off" autocapitalize="off"
+          spellcheck="false" placeholder="Click here and start typing..."></textarea>
+
+        <div class="typing-footer">
+          <span id="typingStatus" aria-live="polite">The timer starts with your first character.</span>
+          <span id="charCount">0 characters</span>
+        </div>
+
+        <div class="level-progress-heading">
+          <span>LEVEL PROGRESS</span><b id="levelProgressText">0 / 3 tasks</b>
+        </div>
+        <div class="level-track"><div id="levelBar" class="level-bar"></div></div>
+      </article>
+
+      <div class="game-bottom">
+        <div class="tip-card"><span class="tip-icon">✦</span><div><b>Pro tip</b><p>Accuracy first. Speed will follow naturally.</p></div></div>
+        <div class="session-card"><span>SESSION SCORE</span><b id="sessionScore">0</b></div>
+      </div>
+
+      <div id="pauseOverlay" class="overlay hidden">
+        <div class="dialog">
+          <div class="dialog-icon">Ⅱ</div>
+          <h2>Training paused</h2>
+          <p>Take a breath. Your progress is waiting.</p>
+          <button class="btn btn-primary full-width" id="resumeBtn">Resume training →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="resultsScreen" class="screen">
+      <div class="results-top">
+        <div class="eyebrow" id="resultEyebrow">LEVEL REPORT</div>
+        <div class="result-medal" id="resultMedal">★</div>
+        <h1 id="resultTitle">Level complete!</h1>
+        <p id="resultDescription">Three tasks completed. Review your performance.</p>
+      </div>
+      <article class="panel results-panel">
+        <div class="result-score-label">POINTS EARNED THIS LEVEL</div>
+        <div id="resultScore" class="result-score">+0</div>
+        <div class="result-stats-grid">
+          <div><span>WPM</span><b id="resultWpm">0</b></div>
+          <div><span>ACCURACY</span><b id="resultAccuracy">100%</b></div>
+          <div><span>CORRECT CHARS</span><b id="resultCorrect">0</b></div>
+          <div><span>MISTAKES</span><b id="resultErrors">0</b></div>
+        </div>
+        <div class="record-banner" id="recordBanner">★ Personal record saved</div>
+        <div class="xp-row"><span>PROFILE XP</span><b id="xpText">0 XP</b></div>
+        <div class="level-track"><div id="xpBar" class="level-bar"></div></div>
+      </article>
+      <div class="results-actions">
+        <button class="btn btn-secondary" id="resultsHomeBtn">Dashboard</button>
+        <button class="btn btn-primary btn-large" id="continueBtn">Next level →</button>
+      </div>
+    </section>
+
+    <!-- RECORDS -->
+    <section id="recordsScreen" class="screen">
+      <div class="simple-header">
+        <div><div class="eyebrow">YOUR JOURNEY</div><h1>Records & statistics</h1></div>
+        <button class="btn btn-secondary" id="recordsHomeBtn">← Dashboard</button>
+      </div>
+      <div class="stats-grid records-stats">
+        <article class="stat-card"><div class="stat-top"><span>BEST SCORE</span></div><div class="stat-value" id="recordBest">0</div></article>
+        <article class="stat-card"><div class="stat-top"><span>HIGHEST LEVEL</span></div><div class="stat-value" id="recordLevel">0</div></article>
+        <article class="stat-card"><div class="stat-top"><span>SESSIONS</span></div><div class="stat-value" id="recordSessions">0</div></article>
+        <article class="stat-card"><div class="stat-top"><span>PROFILE XP</span></div><div class="stat-value" id="recordXP">0</div></article>
+      </div>
+      <article class="panel records-panel">
+        <div class="panel-heading"><div><div class="eyebrow">LEVEL BY LEVEL</div><h3>Personal high scores</h3></div><span class="small-muted">Best points per level</span></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>LEVEL</th><th>DIFFICULTY</th><th>BEST SCORE</th><th>STATUS</th></tr></thead>
+            <tbody id="recordsTable"></tbody></table>
+        </div>
+      </article>
+      <button class="btn btn-danger" id="resetRecordsBtn">Reset saved records</button>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievementsScreen" class="screen">
+      <div class="simple-header">
+        <div><div class="eyebrow">KEEP GOING</div><h1>Achievements</h1><p class="muted">Every milestone is earned through practice.</p></div>
+        <button class="btn btn-secondary" id="achievementsHomeBtn">← Dashboard</button>
+      </div>
+      <div id="allAchievements" class="achievement-grid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
